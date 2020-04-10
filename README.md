@@ -1,8 +1,14 @@
 # TaylorNova
+## introduction
 P2P chat software
+## Function
+Single chat
+Group chat
+Voice chat
+file transfer
 ## Needed packages:
-EntityFramework.6.3.0
-MaterialDesignColors.1.2.0
+EntityFramework.6.3.0\n
+MaterialDesignColors.1.2.0\n
 MaterialDesignThemes.3.0.0-ci765
 NAudio.1.9.0
 System.Data.SQLite
