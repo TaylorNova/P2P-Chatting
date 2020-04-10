@@ -1,0 +1,44 @@
+﻿<Window x:Class="MyQQ.chooseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MyQQ"
+        mc:Ignorable="d"
+        Title="ChooseWindow" Height="380" Width="200" WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,0,-0.4">
+        <materialDesign:Card
+  Background="{DynamicResource PrimaryHueDarkBrush}"
+  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+  Width="200"
+  Padding="8" Margin="0, 0,0,0">
+            <StackPanel>
+                <TextBlock
+      Margin="16 16 12 8"
+      FontSize="16" Text="ChooseList"/>
+                <ListView  x:Name="ChooseList" Height="266">
+                    
+                </ListView>
+                <Separator
+      Style="{StaticResource MaterialDesignLightSeparator}" />
+                <StackPanel
+      Margin="8 0 8 8"
+      Orientation="Horizontal"
+      HorizontalAlignment="Right">
+                    <Button
+                        x:Name="confirmButton"
+        HorizontalAlignment="Right"
+        Style="{StaticResource MaterialDesignToolForegroundButton}"
+        Width="30"
+        Padding="2 0 0 0"
+        materialDesign:RippleAssist.IsCentered="True" Click="ConfirmButton_Click">
+                        <materialDesign:PackIcon
+          Kind="CheckAll" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</Window>

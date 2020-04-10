@@ -1,0 +1,214 @@
+﻿<Window x:Class="MyQQ.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:MyQQ"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="665.219" Width="800" WindowStyle="None"
+        MouseDown="Window_MouseDown" ResizeMode="NoResize" >
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.MinimizeWindowCommand}" 
+                    Executed="MinimizeWindow_Exec" />
+    </Window.CommandBindings>
+    <Grid Margin="0,100,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:DialogHost
+            Panel.ZIndex="4"
+  HorizontalAlignment="Left"
+  VerticalAlignment="Center">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+      Margin="16">
+                    <TextBlock>
+      Add a new Friend.
+                    </TextBlock>
+                    <TextBox
+                        Margin="0 8 0 0"
+                        HorizontalAlignment="Stretch"
+                        PreviewTextInput ="FindFriendBox_PreviewTextInput"
+                        x:Name="FindFriendBox" />
+                    <StackPanel
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                        <Button
+                            x:Name="addFriendCheckButton"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            IsDefault="True"
+                            Margin="0 8 8 0"
+                            Command="materialDesign:DialogHost.CloseDialogCommand"
+                            Click="addFriendCheckButton_Click"
+                            >
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                            ADD
+                        </Button>
+                        <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsCancel="True"
+          Margin="0 8 8 0"
+          Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                            CANCEL
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Border
+    BorderThickness="0"
+    BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+    MinWidth="229"
+    MinHeight="256"
+    ClipToBounds="True" Width="166" Height="575">
+                <Grid Height="562" Width="275">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+          Height="*" />
+                        <RowDefinition
+          Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone
+        Mode="PrimaryMid"
+        Grid.Row="1"
+        Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                        <TextBlock
+          Margin="16">
+        FriendList
+                        </TextBlock>
+                    </materialDesign:ColorZone>
+                    <Button
+                        x:Name="AddFriendButton"
+        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Right"
+        Grid.Row="0"
+        Margin="0,0,66,28.6" Grid.RowSpan="2">
+                        <materialDesign:PackIcon
+          Kind="Plus"
+          Height="22"
+          Width="22" />
+                    </Button>
+                    <materialDesign:Badged
+  x:Name="Messtip" Badge="0" Panel.ZIndex="4" Margin="113,494,0,-10" Grid.RowSpan="2">
+                        <Button   x:Name="addMessButton"   Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+  ToolTip="MaterialDesignFloatingActionLightButton" Height="41" Width="41" Content="MESS" Click="AddMessButton_Click"/>
+                    </materialDesign:Badged>
+                </Grid>
+            </Border>
+        </materialDesign:DialogHost>
+        <TreeView
+  x:Name="friendTree" MinWidth="220" Margin="0,0,570.286,0.2" BorderThickness="0" Background="#a0bad0" VirtualizingPanel.IsVirtualizing="False" Panel.ZIndex="3">
+            <TreeViewItem
+   x:Name="friendTreelist1"  Header="Friends1" IsExpanded="True">
+            </TreeViewItem>
+            <TreeViewItem
+   x:Name="chatGroup"  Header="chatGroup" IsExpanded="True">
+            </TreeViewItem>
+        </TreeView>
+        <materialDesign:Card
+            Background="#9aabbb"
+            Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+            Padding="8"
+            Margin="235,399,10,10.2">
+            <TextBox
+          x:Name="MesEdit"
+          TextWrapping="Wrap"
+          AcceptsReturn="True"
+          Margin="10,10,6,5"
+          Style="{x:Null}"
+          Background="#9aabbb"
+          BorderBrush="{x:Null}"
+          BorderThickness="0"/>
+        </materialDesign:Card>
+        <Button
+        x:Name="SendButton"
+        Margin="700.905,516,20.694,17.819"
+        Style="{StaticResource MaterialDesignRaisedLightButton}"
+        Width="70"
+        Height=" 25"
+        ToolTip="Resource name: MaterialDesignRaisedLightButton"
+        FontFamily ="方正经黑简体"
+        FontSize="15"
+        Content="SEND" Click="SendButton_Click"
+        />
+        <Button
+            x:Name="MinButton"
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            ToolTip="Resource name: MaterialDesignRaisedButton"
+            Height = "32"
+            FontSize="20"
+            Panel.ZIndex="1"
+            Command="{x:Static SystemCommands.MinimizeWindowCommand}" Margin="737,-100,0,633.6" HorizontalAlignment="Left" Width="32" VerticalAlignment="Bottom">
+        </Button>
+        <Button
+            x:Name="CloseButton"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Height = "32"
+            Panel.ZIndex="1"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="769,-100,-2.6,633.6" Click="CloseButton_Click" HorizontalAlignment="Left" Width="32" VerticalAlignment="Bottom" Content="clo"/>
+        <Button x:Name="StickerButton"  HorizontalAlignment="Left" 
+                    Height="33" Margin="250,370,0,0" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    Width="34" Background="{x:Null}" BorderBrush="{x:Null}" Click="StickerButton_Click">
+            <materialDesign:PackIcon Kind="StickerEmoji" />
+        </Button>
+        <Button x:Name="FilesendButton"  HorizontalAlignment="Left"
+                    Height="33" Margin="275,370,0,0" Background="{x:Null}" BorderBrush="{x:Null}"
+                    VerticalAlignment="Top" Width="34" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="FilesendButton_Click"
+                    >
+            <materialDesign:PackIcon Kind="File"/>
+        </Button>
+        <Button x:Name="VoiceButton"  HorizontalAlignment="Left" 
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    Height="33" Margin="300,370,0,0" VerticalAlignment="Top" Width="34" Background="{x:Null}" BorderBrush="{x:Null}" Click="VoiceButton_Click"
+                    >
+            <materialDesign:PackIcon
+                             Kind="SettingsVoice" />
+        </Button>
+        <Button x:Name="MessButton"  HorizontalAlignment="Left" Height="33" Margin="324.714,370,0,0" 
+                    VerticalAlignment="Top" Width="34" Background="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    BorderBrush="{x:Null}" Click="MessButton_Click">
+            <materialDesign:PackIcon Kind="MessageTextOutline" />
+        </Button>
+        <Button x:Name="PauseButton"  HorizontalAlignment="Left" Height="33" Margin="350,370,0,0" 
+                    VerticalAlignment="Top" Width="34" Background="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    BorderBrush="{x:Null}" Click="PauseButton_Click">
+            <materialDesign:PackIcon Kind="EarHearingOff" />
+        </Button>
+        <materialDesign:ColorZone Mode="PrimaryMid"
+                                  Panel.ZIndex="0"
+                                    Padding="16" Background="#a3c3bf" Foreground="Black" 
+                                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top" Height="100"  Margin="0,-100,-3,0">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" Height="52" d:IsHidden="False"/>
+            </DockPanel>
+        </materialDesign:ColorZone>
+        <TextBox x:Name="IdNum" HorizontalAlignment="Left" Height="35" 
+                     Margin="395,-66,0,0" TextWrapping="Wrap" Text="2017011540" VerticalAlignment="Top" Width="165" Background="{x:Null}" BorderBrush="{x:Null}" 
+                 VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+        <Button x:Name="StateLight"
+                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                                    Height="10" Width="10.382"  BorderBrush="{x:Null}"
+                Panel.ZIndex="1"
+                Margin="406.114,-100.114,0,610.933" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+        <materialDesign:Snackbar x:Name="SnackbarMess"
+            IsActive="False" Margin="-35.343,0,538.942,-510.8" Width="282" HorizontalAlignment="Center" VerticalContentAlignment="Center">
+            <materialDesign:SnackbarMessage x:Name="SnackMess"
+            Content="2017011540"
+            ActionContent="New Message" ActionClick="SnackMess_ActionClick" />
+        </materialDesign:Snackbar>
+        <ListView x:Name="ChatList" Margin="228,0,-3,200" MouseDoubleClick="ChatList_MouseDoubleClick"/>
+    </Grid>
+</Window>
+    
